@@ -25,9 +25,16 @@ var ViewModel = function () {
   this.currentCat = ko.observable(new Cat());
 
   this.incrementCounter = function() {
-    this.currentCat().clickCount(this.currentCat().clickCount() + 1);
+    // using the with binding, you are within the binding context of the currentCat instead of the ViewModel !
+    this.clickCount(this.clickCount() + 1);
   };
 
+  /* // another more straight forward way
+  var that = this;
+  this.incrementCounter = function() {
+    that.currentCat().clickCount(that.currentCat().clickCount() + 1);
+  };
+ */
 };
 
 ko.applyBindings(new ViewModel());
